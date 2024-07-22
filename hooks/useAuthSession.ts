@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, clearAuth } from "@/redux/auth/auth.slice";
+import { setUser, clearAuth,setToken } from "@/redux/auth/auth.slice";
 import { RootState } from "@/redux/store";
 import axios from "axios";
 
@@ -22,8 +22,8 @@ const useAuthSession = () => {
             }
           );
           if (response.status === 200) {
-            // console.log(response.data.user);
             dispatch(setUser(response.data.user));
+            dispatch(setToken(response.data.token));
           } else {
             dispatch(clearAuth());
           }
@@ -31,14 +31,11 @@ const useAuthSession = () => {
           dispatch(clearAuth());
         }
       } 
-      // else {
-      //   dispatch(clearAuth());
-      // }
     };
 
     checkSession();
   }, [dispatch]);
-
+  
   return { user };
 };
 

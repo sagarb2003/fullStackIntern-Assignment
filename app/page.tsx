@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/redux/store";
 import { setToken, setUser } from "@/redux/auth/auth.slice";
 import useAuthSession from "../hooks/useAuthSession";
 import axios from "axios";
@@ -8,7 +9,7 @@ import axios from "axios";
 const HomePage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { user } = useAuthSession();
 
   const handleLogin = async () => {
@@ -21,6 +22,8 @@ const HomePage = () => {
         username,
         password,
       });
+      // console.log(response);
+      
       if (response.status === 200) {
         const { token, username } = response.data;
         localStorage.setItem("token", token);

@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     });
 
     if (user) {
-      return NextResponse.json({ user: { username: user.username } });
+      return NextResponse.json({ user: { username: user.username },token });
     } else {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
