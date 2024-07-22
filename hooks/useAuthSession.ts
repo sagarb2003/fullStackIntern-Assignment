@@ -22,6 +22,7 @@ const useAuthSession = () => {
             }
           );
           if (response.status === 200) {
+            // console.log(response.data.user);
             dispatch(setUser(response.data.user));
           } else {
             dispatch(clearAuth());

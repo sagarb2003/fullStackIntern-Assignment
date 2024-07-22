@@ -13,6 +13,10 @@ const HomePage = () => {
 
   const handleLogin = async () => {
     try {
+      if(username==="" || password===""){
+        alert('Enter username and password')
+        return;
+      }
       const response = await axios.post("http://localhost:3000/api/user", {
         username,
         password,
@@ -44,6 +48,7 @@ const HomePage = () => {
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Username"
               className="w-full px-4 py-2 mt-4 border rounded-md"
+              required
             />
             <input
               type="password"
@@ -51,6 +56,7 @@ const HomePage = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="w-full px-4 py-2 mt-4 border rounded-md"
+              required
             />
             <button
               onClick={handleLogin}
